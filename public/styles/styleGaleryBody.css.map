@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACL,gBAAgB,EAAE,IAAI;EACtB,gBAAgB,EAAE,KAAK;CACtB",
+    "sources": [
+        "styleGaleryBody.scss"
+    ],
+    "names": [],
+    "file": "styleGaleryBody.css"
+}

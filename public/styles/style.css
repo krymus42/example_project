@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#black {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#black #text {
+  width: 40vw;
+  height: 40vh;
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  -webkit-transform: translate(-50%, -75%);
+          transform: translate(-50%, -75%);
+}
+
+#black #links {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  text-align: center;
+}
+
+#black #links a {
+  margin-right: 5vh;
+  color: white;
+  text-decoration: none;
+}
+
+#black #links a:hover {
+  border-bottom: 1px solid white;
+}
+
+#galery {
+  float: left;
+  margin-left: 2vw;
+}
+
+#galery img {
+  margin-top: 15vh;
+  width: 30vw;
+  height: 70vh;
+}
+
+#galery img:hover {
+  opacity: 0.5;
+}
+
+button {
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  font-size: 32px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+#prevButton {
+  float: left;
+  height: 70vh;
+  margin-top: 15vh;
+}
+
+#prevButton:hover {
+  border-right: 1px solid white;
+}
+
+#nextButton {
+  float: right;
+  height: 70vh;
+  margin-top: 15vh;
+}
+
+#nextButton:hover {
+  border-left: 1px solid white;
+}
+
+#image {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 0;
+  position: absolute;
+  margin-top: 5vh;
+  margin-left: 5vw;
+  height: 90vh;
+  width: 90vw;
+}
+/*# sourceMappingURL=style.css.map */

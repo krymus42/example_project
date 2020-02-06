@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/styles/style.css">
+        <link rel="stylesheet" type="text/css" href="/styles/styleBody.css">
+        <link href="/fonts/font.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    </head>
+    <body>
+        <div id="black">
+            <div id="links"><a href="/">Strona główna</a><a href="/html/categories.html">Galeria</a><a href="/html/kontakt.html">Kontakt</a></div>
+            <a href="/html/login.html">Login</a>  <div id="categories">
+                <button id='prevButton'>Butt</button>
+                 <div class="galery" value='' id ="one"><img id="oneImage" src=""></div>
+                 <div class="galery"  value='' id="two"><img id="twoImage" src=""></div>
+                 <div class="galery" value='' id="three"><img id="threeImage" src=""></div>
+                 <button id="nextButton">ON</button>
+               </div>
+               <script type="text/javascript">
+                    document.addEventListener("DOMContentLoaded",()=>{
+                      
+                      (async()=>{
+                      const categoryFile = await (await fetch("/categories")).json();
+                      const divs = document.querySelectorAll("#categories div");
+                      const categories = categoryFile.text.split("\n");
+                      let index = 1;
+                      console.table(categories);
+                      const update = () => {
+                          let i=-1;
+                        divs.forEach((div)=>{
+                           const ind = index+i<0? categories.length-1 : index+i>categories.length-1 ? 0 : index+i; 
+                            $(div).children().attr('src',`/categories/${categories[ind]}/${categories[ind]}.jpg`);
+                           $(div).children().click((e)=>{
+                            console.log($(this).attr('id'));
+                           });
+                            $(div).attr('value',categories[ind]);
+                            i++;
+                    });
+
+                     
+                      };
+                      document.getElementById("nextButton").onclick = () => {
+          index = index - 1 >= 0 ? index - 1 : categories.length - 1;
+         $('.galery').each(function () { $(this).fadeTo(50, 0, update()); }).fadeTo('slow', 1);
+        };
+        document.getElementById("prevButton").onclick = () => {
+          index = index - 1 >= 0 ? index - 1 : categories.length - 1;
+         $('.galery').each(function () { $(this).fadeTo(50, 0, update()).fadeTo('slow', 1); });
+        };
+     })();
+  });
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

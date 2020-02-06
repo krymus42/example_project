@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="/styles/styleGaleryBody.css">
+  <link href="/fonts/font.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+  <div id="black">
+    <div id="links"><a href="/">Strona główna</a><a href="/html/galeria.html">Galeria</a><a href="/html/kontakt.html">Kontakt</a>
+      <a href="/html/login.html">Login</a>
+    </div>
+    <button id="prevButton">
+      <<</button> <div id="galery">
+        <img class="galery" id="previous">
+        <img class="galery" id="current">
+        <img class="galery" id="next">
+  </div>
+  <button id="nextButton">>></button>
+  </div>
+  </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const prepare = async () => {
+        const res = await fetch('/images');
+        const json = await res.json();
+        let index = 1;
+        const previous = document.getElementById("previous");
+        const current = document.getElementById("current");
+        const next = document.getElementById("next");
+        const update = () => {
+          let prevIndex = index - 1 >= 0 ? index - 1 : Object.keys(json).length - 1;
+          let currIndex = index;
+          let nextIndex = index + 1 <= Object.keys(json).length - 1 ? index + 1 : 0;
+          previous.src = "/" + json[prevIndex].name;
+          current.src = "/" + json[currIndex].name;
+          next.src = "/" + json[nextIndex].name;
+        }
+
+        $('.galery').each(function () {
+          $(this).on('click', function () {
+            const div = document.createElement('div');
+            div.id = "image";
+            const button = document.createElement("button");
+            button.textContent = "X";
+            button.id = 'close';
+            button.onclick = () => {
+              document.body.removeChild(div);
+            };
+
+            button.style.fontSize = "48px";
+            const url = "/images/"+$(this).attr("src");
+            div.style.backgroundImage = `url('${url}')`;
+            div.appendChild(button);
+            document.body.appendChild(div);
+          });
+        });
+        document.getElementById("prevButton").onclick = () => {
+          index = index + 1 <= Object.keys(json).length - 1 ? index + 1 : 0;
+          console.log("prev"+index);
+          $('.galery').each(function () { $(this).fadeTo(50, 0, update()); }).fadeTo('slow', 1);
+        };
+        document.getElementById("nextButton").onclick = () => {
+          index = index - 1 >= 0 ? index - 1 : Object.keys(json).length - 1;
+          console.log('next'+index);
+          $('.galery').each(function () { $(this).fadeTo(50, 0, update()).fadeTo('slow', 1); });
+        };
+        update();
+      };
+      prepare();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="../script/admin.js"></script>
+ <div id="options"><button>New category</button><button>New image</button></div>
+ <div id="content">
+    <form id="new_category" action="/addCategory" method="POST" enctype="application/x-www-form-urlencoded">
+    <input type="text" name="new_category" placeholder="Category name">
+    <input type="file" name="file" value="category image">
+    <input type="submit" value="submit">
+    </form>
+
+    <form action="/addImage" name="new_image" method="post" id="imageForm">
+    <select name="category"></select>
+    <input type="file" name="file" value="image">
+    <input type="submit" value="submit">
+    </form> 
+
+ </div>
+</body>
+</html>
